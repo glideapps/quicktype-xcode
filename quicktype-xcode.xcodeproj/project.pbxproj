@@ -15,6 +15,7 @@
 		6317CD1B1FECC654006CCFC1 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD1A1FECC654006CCFC1 /* SourceEditorCommand.swift */; };
 		6317CD201FECC654006CCFC1 /* quicktype.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6317CD131FECC654006CCFC1 /* quicktype.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6349B5AD1FECF39D00F7AA42 /* quicktype.js in Resources */ = {isa = PBXBuildFile; fileRef = 6349B5AC1FECF39D00F7AA42 /* quicktype.js */; };
+		63BCCEDF1FED99AD00E1C1DB /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		6317CD1C1FECC654006CCFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = quicktype.entitlements; sourceTree = "<group>"; };
 		6349B5AC1FECF39D00F7AA42 /* quicktype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = quicktype.js; sourceTree = "<group>"; };
+		63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				6317CD001FECC5DC006CCFC1 /* quicktype-xcode */,
-				6317CD171FECC654006CCFC1 /* quicktype */,
+				6317CD171FECC654006CCFC1 /* editor-extension */,
 				6317CD141FECC654006CCFC1 /* Frameworks */,
 				6317CCFF1FECC5DC006CCFC1 /* Products */,
 			);
@@ -115,16 +117,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6317CD171FECC654006CCFC1 /* quicktype */ = {
+		6317CD171FECC654006CCFC1 /* editor-extension */ = {
 			isa = PBXGroup;
 			children = (
 				6349B5AC1FECF39D00F7AA42 /* quicktype.js */,
 				6317CD181FECC654006CCFC1 /* SourceEditorExtension.swift */,
 				6317CD1A1FECC654006CCFC1 /* SourceEditorCommand.swift */,
+				63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */,
 				6317CD1C1FECC654006CCFC1 /* Info.plist */,
 				6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */,
 			);
-			path = quicktype;
+			path = "editor-extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6317CD191FECC654006CCFC1 /* SourceEditorExtension.swift in Sources */,
+				63BCCEDF1FED99AD00E1C1DB /* Runtime.swift in Sources */,
 				6317CD1B1FECC654006CCFC1 /* SourceEditorCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,14 +412,16 @@
 		6317CD221FECC654006CCFC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = quicktype/quicktype.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "editor-extension/quicktype.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W9D824R4EW;
-				INFOPLIST_FILE = quicktype/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/editor-extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "quicktype.quicktype-xcode.quicktype";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 			};
@@ -424,14 +430,16 @@
 		6317CD231FECC654006CCFC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = quicktype/quicktype.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "editor-extension/quicktype.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W9D824R4EW;
-				INFOPLIST_FILE = quicktype/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/editor-extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "quicktype.quicktype-xcode.quicktype";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 			};
