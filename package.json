@@ -1,0 +1,23 @@
+{
+  "name": "quicktype-xcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "browserify node_modules/quicktype/dist/index.js -s quicktype -o quicktype/quicktype.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quicktype/quicktype-xcode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quicktype/quicktype-xcode/issues"
+  },
+  "homepage": "https://github.com/quicktype/quicktype-xcode#readme",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "quicktype": "^7.0.3"
+  }
+}
