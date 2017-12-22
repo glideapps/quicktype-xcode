@@ -51,7 +51,7 @@ class Runtime {
         context.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
     }
     
-    func quicktype(_ json: String, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func quicktype(_ json: String, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
         resolve { lines in success(lines) }
         reject { errorMessage in fail(errorMessage) }
         
@@ -62,7 +62,10 @@ class Runtime {
                   sources: [{
                     name: "TopLevel",
                     samples: [json]
-                  }]
+                  }],
+                  rendererOptions: {
+                    "just-types": \(justTypes ? "true" : "false")
+                  }
                 }).then(function(result) {
                   resolve(result.lines);
                 }).catch(function(e) {

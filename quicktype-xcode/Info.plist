@@ -4,29 +4,54 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>quicktype</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Paste JSON as…</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>XCSourceEditorCommandDefinitions</key>
+			<array>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsSwiftJustTypesCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsSwiftJustTypesCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Swift types</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsSwiftCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsSwiftCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Swift types and helpers</string>
+				</dict>
+			</array>
+			<key>XCSourceEditorExtensionPrincipalClass</key>
+			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.dt.Xcode.extension.source-editor</string>
+	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 quicktype. All rights reserved.</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 </dict>
 </plist>

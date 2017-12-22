@@ -1,3 +1,4 @@
+
 import Foundation
 import AppKit
 
@@ -5,12 +6,12 @@ import XcodeKit
 
 typealias Invocation = XCSourceEditorCommandInvocation
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand {
+class PasteJSONAsSwiftCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
         return NSError(domain: "quicktype", code: 1, userInfo: [
             NSLocalizedDescriptionKey: NSLocalizedString(message, comment: ""),
             NSLocalizedFailureReasonErrorKey: NSLocalizedString(details, comment: "")
-        ])
+            ])
     }
     
     func getFirstSelection(_ invocation: Invocation) -> XCSourceTextRange? {
@@ -84,13 +85,17 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     func isValidJson(_ json: String) -> Bool {
         let objectData = """
             {
-                "sample": \(json)
+            "sample": \(json)
             }
-        """.data(using: .utf8)!
+            """.data(using: .utf8)!
         
         if let _ = try? JSONSerialization.jsonObject(with: objectData, options: []) as? [String: Any] {
             return true
         }
+        return false
+    }
+    
+    var renderTypesOnly: Bool {
         return false
     }
     
@@ -113,6 +118,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         }
         
         runtime.quicktype(json,
+                          justTypes: renderTypesOnly,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
                           success: { self.handleSuccess(lines: $0, invocation, completionHandler) })
     }
