@@ -10,7 +10,36 @@
 		6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */; };
 		6317CD041FECC5DC006CCFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD031FECC5DC006CCFC1 /* Assets.xcassets */; };
 		6317CD071FECC5DC006CCFC1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD051FECC5DC006CCFC1 /* MainMenu.xib */; };
+		6317CD161FECC654006CCFC1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317CD151FECC654006CCFC1 /* Cocoa.framework */; };
+		6317CD191FECC654006CCFC1 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD181FECC654006CCFC1 /* SourceEditorExtension.swift */; };
+		6317CD1B1FECC654006CCFC1 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD1A1FECC654006CCFC1 /* SourceEditorCommand.swift */; };
+		6317CD201FECC654006CCFC1 /* quicktype.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6317CD131FECC654006CCFC1 /* quicktype.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6349B5AD1FECF39D00F7AA42 /* quicktype.js in Resources */ = {isa = PBXBuildFile; fileRef = 6349B5AC1FECF39D00F7AA42 /* quicktype.js */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6317CD1E1FECC654006CCFC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6317CCF61FECC5DC006CCFC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6317CD121FECC654006CCFC1;
+			remoteInfo = quicktype;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6317CD241FECC654006CCFC1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6317CD201FECC654006CCFC1 /* quicktype.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6317CCFE1FECC5DC006CCFC1 /* quicktype-xcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quicktype-xcode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,6 +48,13 @@
 		6317CD061FECC5DC006CCFC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6317CD081FECC5DC006CCFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6317CD091FECC5DC006CCFC1 /* quicktype_xcode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = quicktype_xcode.entitlements; sourceTree = "<group>"; };
+		6317CD131FECC654006CCFC1 /* quicktype.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = quicktype.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6317CD151FECC654006CCFC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6317CD181FECC654006CCFC1 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
+		6317CD1A1FECC654006CCFC1 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		6317CD1C1FECC654006CCFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = quicktype.entitlements; sourceTree = "<group>"; };
+		6349B5AC1FECF39D00F7AA42 /* quicktype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = quicktype.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +65,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6317CD101FECC654006CCFC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6317CD161FECC654006CCFC1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -36,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				6317CD001FECC5DC006CCFC1 /* quicktype-xcode */,
+				6317CD171FECC654006CCFC1 /* quicktype */,
+				6317CD141FECC654006CCFC1 /* Frameworks */,
 				6317CCFF1FECC5DC006CCFC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				6317CCFE1FECC5DC006CCFC1 /* quicktype-xcode.app */,
+				6317CD131FECC654006CCFC1 /* quicktype.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +107,26 @@
 			path = "quicktype-xcode";
 			sourceTree = "<group>";
 		};
+		6317CD141FECC654006CCFC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6317CD151FECC654006CCFC1 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6317CD171FECC654006CCFC1 /* quicktype */ = {
+			isa = PBXGroup;
+			children = (
+				6349B5AC1FECF39D00F7AA42 /* quicktype.js */,
+				6317CD181FECC654006CCFC1 /* SourceEditorExtension.swift */,
+				6317CD1A1FECC654006CCFC1 /* SourceEditorCommand.swift */,
+				6317CD1C1FECC654006CCFC1 /* Info.plist */,
+				6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */,
+			);
+			path = quicktype;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -70,15 +137,34 @@
 				6317CCFA1FECC5DC006CCFC1 /* Sources */,
 				6317CCFB1FECC5DC006CCFC1 /* Frameworks */,
 				6317CCFC1FECC5DC006CCFC1 /* Resources */,
+				6317CD241FECC654006CCFC1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6317CD1F1FECC654006CCFC1 /* PBXTargetDependency */,
 			);
 			name = "quicktype-xcode";
 			productName = "quicktype-xcode";
 			productReference = 6317CCFE1FECC5DC006CCFC1 /* quicktype-xcode.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6317CD121FECC654006CCFC1 /* quicktype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6317CD211FECC654006CCFC1 /* Build configuration list for PBXNativeTarget "quicktype" */;
+			buildPhases = (
+				6317CD0F1FECC654006CCFC1 /* Sources */,
+				6317CD101FECC654006CCFC1 /* Frameworks */,
+				6317CD111FECC654006CCFC1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = quicktype;
+			productName = quicktype;
+			productReference = 6317CD131FECC654006CCFC1 /* quicktype.appex */;
+			productType = "com.apple.product-type.xcode-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -91,6 +177,10 @@
 				ORGANIZATIONNAME = quicktype;
 				TargetAttributes = {
 					6317CCFD1FECC5DC006CCFC1 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					6317CD121FECC654006CCFC1 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -110,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				6317CCFD1FECC5DC006CCFC1 /* quicktype-xcode */,
+				6317CD121FECC654006CCFC1 /* quicktype */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +215,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6317CD111FECC654006CCFC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6349B5AD1FECF39D00F7AA42 /* quicktype.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -135,7 +234,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6317CD0F1FECC654006CCFC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6317CD191FECC654006CCFC1 /* SourceEditorExtension.swift in Sources */,
+				6317CD1B1FECC654006CCFC1 /* SourceEditorCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6317CD1F1FECC654006CCFC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6317CD121FECC654006CCFC1 /* quicktype */;
+			targetProxy = 6317CD1E1FECC654006CCFC1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6317CD051FECC5DC006CCFC1 /* MainMenu.xib */ = {
@@ -258,6 +374,7 @@
 		6317CD0D1FECC5DC006CCFC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "quicktype-xcode/quicktype_xcode.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -274,6 +391,7 @@
 		6317CD0E1FECC5DC006CCFC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "quicktype-xcode/quicktype_xcode.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -283,6 +401,38 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		6317CD221FECC654006CCFC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = quicktype/quicktype.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W9D824R4EW;
+				INFOPLIST_FILE = quicktype/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "quicktype.quicktype-xcode.quicktype";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		6317CD231FECC654006CCFC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = quicktype/quicktype.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W9D824R4EW;
+				INFOPLIST_FILE = quicktype/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "quicktype.quicktype-xcode.quicktype";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -304,6 +454,15 @@
 			buildConfigurations = (
 				6317CD0D1FECC5DC006CCFC1 /* Debug */,
 				6317CD0E1FECC5DC006CCFC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6317CD211FECC654006CCFC1 /* Build configuration list for PBXNativeTarget "quicktype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6317CD221FECC654006CCFC1 /* Debug */,
+				6317CD231FECC654006CCFC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
