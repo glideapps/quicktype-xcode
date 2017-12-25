@@ -13,6 +13,17 @@ class Runtime {
         return nil != context
     }
     
+    var _quicktypeJavaScript: String?
+    var quicktypeJavaScript: String? {
+        if nil == _quicktypeJavaScript {
+            guard let javascriptPath = Bundle.main.url(forResource: "quicktype", withExtension: "js") else { return nil }
+            guard let data = try? Data(contentsOf: javascriptPath) else { return nil }
+            _quicktypeJavaScript = String(data: data, encoding: .utf8)
+        }
+        
+        return _quicktypeJavaScript
+    }
+    
     func initialize() -> Bool {
         guard let context = JSContext() else { return false }
         
@@ -30,10 +41,7 @@ class Runtime {
         let consoleLog: @convention(block) (Any) -> Void = { print($0) }
         context.objectForKeyedSubscript("console").setObject(consoleLog, forKeyedSubscript: "log" as NSString)
         
-        guard let javascriptPath = Bundle.main.url(forResource: "quicktype", withExtension: "js") else { return false }
-        guard let data = try? Data(contentsOf: javascriptPath) else { return false }
-        guard let javascript = String(data: data, encoding: .utf8) else { return false }
-        
+        guard let javascript = quicktypeJavaScript else { return false }
         context.evaluateScript(javascript)
         
         self.context = context
