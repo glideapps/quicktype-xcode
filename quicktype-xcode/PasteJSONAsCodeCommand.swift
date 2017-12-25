@@ -55,7 +55,8 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         let selection = getFirstSelection(invocation) ?? XCSourceTextRange()
         
         let selectedIndices = selection.start.line...selection.end.line
-        if selection.start.line != selection.end.line || selection.start.column != selection.end.column {
+        let selectionEmpty = selection.start.line == selection.end.line && selection.start.column == selection.end.column
+        if !selectionEmpty {
             buffer.lines.removeObjects(at: IndexSet(selectedIndices))
         }
         
