@@ -63,6 +63,7 @@ class Runtime {
                     name: "TopLevel",
                     samples: [json]
                   }],
+                  leadingComments: [],
                   rendererOptions: {
                     "just-types": \(justTypes ? "true" : "false")
                   }
