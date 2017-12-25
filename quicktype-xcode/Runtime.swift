@@ -6,6 +6,11 @@ class Runtime {
     
     var context: JSContext!
     
+    let preface = [
+        "Generated with quicktype",
+        "For more options, try https://quicktype.io"
+    ]
+    
     let quicktypeLanguageUTIs = [
         kUTTypeSwiftSource: "swift",
         kUTTypeJavaSource: "java",
@@ -84,6 +89,8 @@ class Runtime {
             return
         }
         
+        let comments = preface.map { "\"\($0)\"" }.joined(separator: ",")
+        
         context.evaluateScript("""
             function swifttype(json) {
                 window.quicktype.quicktype({
@@ -92,7 +99,7 @@ class Runtime {
                     name: "TopLevel",
                     samples: [json]
                   }],
-                  leadingComments: [],
+                  leadingComments: [\(comments)],
                   rendererOptions: {
                     "just-types": \(justTypes ? "true" : "false")
                   }
