@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/quicktype/quicktype/master/quicktype-logo.svg)
+![](media/logo.svg)
 
 [![npm version](https://badge.fury.io/js/quicktype.svg)](https://badge.fury.io/js/quicktype)
 [![Build Status](https://travis-ci.org/quicktype/quicktype.svg?branch=master)](https://travis-ci.org/quicktype/quicktype)
