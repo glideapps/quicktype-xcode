@@ -79,20 +79,11 @@ class PasteJSONAsSwiftCommand: NSObject, XCSourceEditorCommand {
             print("quicktype runtime could not be reinitialized")
         }
         
-        completionHandler(error("quicktype encountered an internal error", details: message))
-    }
-    
-    func isValidJson(_ json: String) -> Bool {
-        let objectData = """
-            {
-            "sample": \(json)
-            }
-            """.data(using: .utf8)!
+        let displayMessage = message.contains("cannot parse input")
+            ? "Clipboard does not contain valid JSON"
+            : "quicktype encountered an internal error"
         
-        if let _ = try? JSONSerialization.jsonObject(with: objectData, options: []) as? [String: Any] {
-            return true
-        }
-        return false
+        completionHandler(error(displayMessage, details: message))
     }
     
     var renderTypesOnly: Bool {
@@ -109,11 +100,6 @@ class PasteJSONAsSwiftCommand: NSObject, XCSourceEditorCommand {
         
         guard let json = NSPasteboard.general.string(forType: .string) else {
             completionHandler(error("Couldn't get JSON from clipboard"))
-            return
-        }
-        
-        if !isValidJson(json) {
-            completionHandler(error("Clipboard does not contain valid JSON"))
             return
         }
         
