@@ -32,10 +32,15 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         return line.starts(with: "//")
     }
     
+    func isImport(_ line: String) -> Bool {
+        // TODO we should split this functionality by current source language
+        return ["import ", "#include ", "#import "].index { line.starts(with: $0) } != nil
+    }
+    
     func trimStart(_ lines: [String]) -> [String] {
         // Remove leading imports, comments, whitespace from start and end
         return Array(lines.drop(while: { line in
-            return isComment(line) || isBlank(line) || line.starts(with: "import ")
+            return isComment(line) || isBlank(line) || isImport(line)
         }))
     }
     
