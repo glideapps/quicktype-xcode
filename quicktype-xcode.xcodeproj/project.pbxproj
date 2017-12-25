@@ -421,7 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W9D824R4EW;
-				INFOPLIST_FILE = "$(SRCROOT)/quicktype-xcode/Info.plist";
+				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype.xcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,7 +439,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W9D824R4EW;
-				INFOPLIST_FILE = "$(SRCROOT)/quicktype-xcode/Info.plist";
+				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype.xcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
