@@ -1,6 +1,26 @@
 import Foundation
 import JavaScriptCore
 
+enum Language: String {
+    case swift, java, cpp
+}
+
+fileprivate let languageUTIs: [CFString: Language] = [
+    kUTTypeSwiftSource: .swift,
+    kUTTypeJavaSource: .java,
+    kUTTypeCPlusPlusSource: .cpp,
+    kUTTypeObjectiveCPlusPlusSource: .cpp
+]
+
+func languageFor(contentUTI: CFString) -> Language? {
+    for (uti, language) in languageUTIs {
+        if UTTypeConformsTo(contentUTI as CFString, uti) {
+            return language
+        }
+    }
+    return nil
+}
+
 class Runtime {
     public static let shared = Runtime()
     
@@ -10,22 +30,6 @@ class Runtime {
         "Generated with quicktype",
         "For more options, try https://quicktype.io"
     ]
-    
-    let quicktypeLanguageUTIs = [
-        kUTTypeSwiftSource: "swift",
-        kUTTypeJavaSource: "java",
-        kUTTypeCPlusPlusSource: "cpp",
-        kUTTypeObjectiveCPlusPlusSource: "cpp"
-    ]
-    
-    func quicktypeLanguage(_ contentUTI: CFString) -> String? {
-        for (uti, languageName) in quicktypeLanguageUTIs {
-            if UTTypeConformsTo(contentUTI as CFString, uti) {
-                return languageName
-            }
-        }
-        return nil
-    }
     
     private init() {
     }
@@ -80,21 +84,16 @@ class Runtime {
         context.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
     }
     
-    func quicktype(_ json: String, contentUTI: CFString, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func quicktype(_ json: String, language: Language, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
         resolve { lines in success(lines) }
         reject { errorMessage in fail(errorMessage) }
-        
-        guard let language = quicktypeLanguage(contentUTI) else {
-            fail("Cannot generate code for \(contentUTI)")
-            return
-        }
         
         let comments = preface.map { "\"\($0)\"" }.joined(separator: ",")
         
         context.evaluateScript("""
             function swifttype(json) {
                 window.quicktype.quicktype({
-                  lang: "\(language)",
+                  lang: "\(language.rawValue)",
                   sources: [{
                     name: "TopLevel",
                     samples: [json]

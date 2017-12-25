@@ -30,17 +30,17 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsTypesCommand</string>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsTypesCommand</string>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsTypes</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Paste JSON as Types</string>
 				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsCodeCommand</string>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsCodeCommand</string>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsCode</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Paste JSON as Code</string>
 				</dict>

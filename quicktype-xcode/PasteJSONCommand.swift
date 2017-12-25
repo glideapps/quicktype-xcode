@@ -6,7 +6,21 @@ import XcodeKit
 
 typealias Invocation = XCSourceEditorCommandInvocation
 
-class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
+enum Command: String {
+    case pasteJSONAsTypes = "quicktype.quicktype.xcode.PasteJSONAsTypes"
+    case pasteJSONAsCode = "quicktype.quicktype.xcode.PasteJSONAsCode"
+}
+
+struct Options {
+    let justTypes: Bool
+}
+
+let optionsForCommand: [Command: Options] = [
+    .pasteJSONAsTypes: Options(justTypes: true),
+    .pasteJSONAsCode: Options(justTypes: false)
+]
+
+class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
         return NSError(domain: "quicktype", code: 1, userInfo: [
             NSLocalizedDescriptionKey: NSLocalizedString(message, comment: ""),
@@ -111,11 +125,22 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         completionHandler(error(displayMessage, details: message))
     }
     
-    var renderTypesOnly: Bool {
-        return false
-    }
-    
     func perform(with invocation: Invocation, completionHandler: @escaping (Error?) -> Void) -> Void {
+        guard let command = Command(rawValue: invocation.commandIdentifier) else {
+            completionHandler(error("Unrecognized command"))
+            return
+        }
+        
+        guard let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) else {
+            completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
+            return
+        }
+        
+        guard let options = optionsForCommand[command] else {
+            completionHandler(error("Could not determine command options"))
+            return
+        }
+        
         let runtime = Runtime.shared
         
         if !runtime.isInitialized && !runtime.initialize() {
@@ -129,8 +154,8 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         }
         
         runtime.quicktype(json,
-                          contentUTI: invocation.buffer.contentUTI as CFString,
-                          justTypes: renderTypesOnly,
+                          language: language,
+                          justTypes: options.justTypes,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
                           success: { self.handleSuccess(lines: $0, invocation, completionHandler) })
     }
