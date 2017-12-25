@@ -58,7 +58,9 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
             ? selection.start.line...(selection.end.line - 1)
             : selection.start.line...selection.end.line
         
-        let selectionEmpty = selection.start.line == selection.end.line && selection.start.column == selection.end.column
+        let selectionEmpty =
+            selection.start.line == selection.end.line &&
+                selection.start.column == selection.end.column
         if !selectionEmpty {
             buffer.lines.removeObjects(at: IndexSet(selectedIndices))
         }
