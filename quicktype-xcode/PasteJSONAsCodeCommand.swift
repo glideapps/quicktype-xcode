@@ -24,42 +24,33 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         return nil
     }
     
-    func lineIsBlank(_ line: String) -> Bool {
+    func isBlank(_ line: String) -> Bool {
         return line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
-    func lineIsComment(_ line: String) -> Bool {
+    func isComment(_ line: String) -> Bool {
         return line.starts(with: "//")
     }
     
-    func cleanGeneratedLines(_ lines: [String], _ invocation: Invocation) -> [String] {
-        var cleaned = lines
-        
-        func isImportCommentOrEmpty(line: String) -> Bool {
-            if lineIsComment(line) {
-                return true
-            }
-            
-            if line.starts(with: "import ") {
-                return true
-            }
-            
-            return lineIsBlank(line)
-        }
-        
+    func trimStart(_ lines: [String]) -> [String] {
         // Remove leading imports, comments, whitespace from start and end
-        cleaned = Array(cleaned
-            .drop(while: isImportCommentOrEmpty)
-            .reversed().drop(while: isImportCommentOrEmpty).reversed()
+        return Array(lines.drop(while: { line in
+            return isComment(line) || isBlank(line) || line.starts(with: "import ")
+        }))
+    }
+    
+    func trimEnd(_ lines: [String]) -> [String] {
+        return Array(lines
+            .reversed()
+            .drop { isBlank($0) || isComment($0) }
+            .reversed()
         )
-        
-        return cleaned
     }
     
     func insertingAfterCode(_ buffer: XCSourceTextBuffer, _ selection: XCSourceTextRange) -> Bool {
         for i in 0..<selection.start.line {
             let line = buffer.lines[i] as! String
-            if lineIsBlank(line) || lineIsComment(line) {
+            if isBlank(line) || isComment(line) {
                 continue
             }
             return true
@@ -73,8 +64,8 @@ class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
         
         // If we're pasting in the middle of anything, we omit imports
         let cleanLines = insertingAfterCode(buffer, selection)
-         ? cleanGeneratedLines(lines, invocation)
-         : lines
+         ? trimEnd(trimStart(lines))
+         : trimEnd(lines)
         
         let selectionEmpty =
             selection.start.line == selection.end.line &&
