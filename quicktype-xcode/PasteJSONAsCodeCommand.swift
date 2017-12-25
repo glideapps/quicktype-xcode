@@ -6,7 +6,7 @@ import XcodeKit
 
 typealias Invocation = XCSourceEditorCommandInvocation
 
-class PasteJSONAsSwiftCommand: NSObject, XCSourceEditorCommand {
+class PasteJSONAsCodeCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
         return NSError(domain: "quicktype", code: 1, userInfo: [
             NSLocalizedDescriptionKey: NSLocalizedString(message, comment: ""),
@@ -104,6 +104,7 @@ class PasteJSONAsSwiftCommand: NSObject, XCSourceEditorCommand {
         }
         
         runtime.quicktype(json,
+                          contentUTI: invocation.buffer.contentUTI as CFString,
                           justTypes: renderTypesOnly,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
                           success: { self.handleSuccess(lines: $0, invocation, completionHandler) })

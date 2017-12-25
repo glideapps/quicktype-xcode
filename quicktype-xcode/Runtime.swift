@@ -6,6 +6,22 @@ class Runtime {
     
     var context: JSContext!
     
+    let quicktypeLanguageUTIs = [
+        kUTTypeSwiftSource: "swift",
+        kUTTypeJavaSource: "java",
+        kUTTypeCPlusPlusSource: "cpp",
+        kUTTypeObjectiveCPlusPlusSource: "cpp"
+    ]
+    
+    func quicktypeLanguage(_ contentUTI: CFString) -> String? {
+        for (uti, languageName) in quicktypeLanguageUTIs {
+            if UTTypeConformsTo(contentUTI as CFString, uti) {
+                return languageName
+            }
+        }
+        return nil
+    }
+    
     private init() {
     }
     
@@ -59,14 +75,19 @@ class Runtime {
         context.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
     }
     
-    func quicktype(_ json: String, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func quicktype(_ json: String, contentUTI: CFString, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
         resolve { lines in success(lines) }
         reject { errorMessage in fail(errorMessage) }
+        
+        guard let language = quicktypeLanguage(contentUTI) else {
+            fail("Cannot generate code for \(contentUTI)")
+            return
+        }
         
         context.evaluateScript("""
             function swifttype(json) {
                 window.quicktype.quicktype({
-                  lang: "swift",
+                  lang: "\(language)",
                   sources: [{
                     name: "TopLevel",
                     samples: [json]

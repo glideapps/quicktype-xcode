@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Paste JSON as…</string>
+	<string>Paste JSON</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -30,19 +30,19 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsSwiftJustTypesCommand</string>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsTypesCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsSwiftJustTypesCommand</string>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsTypesCommand</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Swift types</string>
+					<string>Paste JSON as Types</string>
 				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsSwiftCommand</string>
+					<string>$(PRODUCT_MODULE_NAME).PasteJSONAsCodeCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsSwiftCommand</string>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsCodeCommand</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Swift types and helpers</string>
+					<string>Paste JSON as Code</string>
 				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>

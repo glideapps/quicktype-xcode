@@ -1,6 +1,6 @@
 import Foundation
 
-class PasteJSONAsSwiftJustTypesCommand: PasteJSONAsSwiftCommand {
+class PasteJSONAsTypesCommand: PasteJSONAsCodeCommand {
     override var renderTypesOnly: Bool {
         return true
     }
