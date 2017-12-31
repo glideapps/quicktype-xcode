@@ -1,7 +1,7 @@
 ![](media/logo.svg)
 
 [![npm version](https://badge.fury.io/js/quicktype.svg)](https://badge.fury.io/js/quicktype)
-[![Build Status](https://travis-ci.org/quicktype/quicktype.svg?branch=master)](https://travis-ci.org/quicktype/quicktype)
+[![Build status](https://build.appcenter.ms/v0.1/apps/494bd498-b124-49e5-894e-2f093e06d45b/branches/master/badge)](https://appcenter.ms/orgs/quicktype/apps/quicktype.io/build/branches/master)
 [![Join us in Slack](http://slack.quicktype.io/badge.svg)](http://slack.quicktype.io/)
 
 `quicktype` infers types from sample JSON data, then outputs strongly typed models and serializers for working with that data in Swift, C++, Obj-C++, Java and more. This extension adds native `quicktype` support to Xcode 9.
