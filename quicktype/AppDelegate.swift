@@ -1,27 +1,22 @@
-//
-//  AppDelegate.swift
-//  quicktype-xcode
-//
-//  Created by David Siegel on 12/21/17.
-//  Copyright © 2017 quicktype. All rights reserved.
-//
-
 import Cocoa
+
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        MSAppCenter.start("dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+        ])
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
-

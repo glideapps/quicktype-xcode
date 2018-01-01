@@ -4,6 +4,8 @@ import AppKit
 
 import XcodeKit
 
+import AppCenterAnalytics
+
 typealias Invocation = XCSourceEditorCommandInvocation
 
 enum Command: String {
@@ -130,6 +132,10 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             completionHandler(error("Unrecognized command"))
             return
         }
+        
+        MSAnalytics.trackEvent("perform", withProperties: [
+            "command": invocation.commandIdentifier
+        ])
         
         guard let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) else {
             completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
