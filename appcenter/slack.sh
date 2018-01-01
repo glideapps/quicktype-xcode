@@ -35,5 +35,5 @@ slack_notify_build_failed() {
 }
 
 slack_notify_deployed() {
-    slack_notify message="✓ <$TESTER_URL|$APP ($APPCENTER_BRANCH, v`quicktype-version`)> distributed to testers"
+    slack_notify message="✓ <$TESTER_URL|$APP v`quicktype-version`> distributed to testers"
 }
