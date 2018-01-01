@@ -2,10 +2,12 @@
 
 source appcenter/slack.sh
 
-# TODO There's no way to indicate failure from build scripts
-# slack_notify_build_passed
+if [ "$AGENT_JOBSTATUS" != "Succeeded" ]; then
+    slack_notify_build_failed
+    exit 0
+fi
 
 # TODO this should be handled by better App Center built-in notifications
-if [ "$APPCENTER_BRANCH" == "master" ]; then
+if [ "$APPCENTER_BRANCH" == "master" ] && [ "$AGENT_JOBSTATUS" == "Succeeded" ]; then
     slack_notify_deployed
 fi
