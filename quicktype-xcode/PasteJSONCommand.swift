@@ -133,14 +133,15 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
-        MSAnalytics.trackEvent("perform", withProperties: [
-            "command": invocation.commandIdentifier
-        ])
-        
         guard let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) else {
             completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
             return
         }
+        
+        MSAnalytics.trackEvent("perform", withProperties: [
+            "command": invocation.commandIdentifier,
+            "language": language.rawValue
+        ])
         
         guard let options = optionsForCommand[command] else {
             completionHandler(error("Could not determine command options"))
