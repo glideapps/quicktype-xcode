@@ -8,6 +8,10 @@ build_link="<$build_url|$APP ($APPCENTER_BRANCH)>"
 
 TESTER_URL="https://install.appcenter.ms/orgs/quicktype/apps/quicktype-xcode/distribution_groups/xcode%20testers"
 
+quicktype-version () {
+    npm -j ls quicktype | jq -r .dependencies.quicktype.version
+}
+
 slack_notify() {
     local message
     local "${@}"
@@ -31,5 +35,5 @@ slack_notify_build_failed() {
 }
 
 slack_notify_deployed() {
-    slack_notify message="✓ <$TESTER_URL|$APP ($APPCENTER_BRANCH)> distributed to testers"
+    slack_notify message="✓ <$TESTER_URL|$APP ($APPCENTER_BRANCH, v`quicktype-version`)> distributed to testers"
 }
