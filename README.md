@@ -18,5 +18,7 @@ Try `quicktype` in your browser at [app.quicktype.io](https://app.quicktype.io).
 ### Install prereqs and bundle quicktype
 
 ```bash
+$ brew install jq
 $ npm install
+$ pod install
 ```
