@@ -7,7 +7,12 @@
 
 Try `quicktype` in your browser at [app.quicktype.io](https://app.quicktype.io).
 
-# [Download Extension](https://github.com/quicktype/quicktype-xcode/releases/download/v8.0.29/quicktype-xcode.zip)
+# Installation
+
+1. [Download the extension](https://github.com/quicktype/quicktype-xcode/releases/download/v8.0.29/quicktype-xcode.zip)
+1. Launch `quicktype.app`
+1. Enable the extension in `System Preferences > Extensions`
+1. Open Xcode and find the `Editor > Paste JSON as` menu
 
 ---
 
