@@ -12,6 +12,8 @@ class SourceEditorExtension: NSObject, XCSourceEditorExtension {
             MSCrashes.self
         ])
         
+        MSAnalytics.trackEvent("extensionDidFinishLaunching")
+        
         if !Runtime.shared.initialize() {
             print("Could not initialize quicktype JavaScript runtime")
         }
