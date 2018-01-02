@@ -7,7 +7,7 @@
 
 Try `quicktype` in your browser at [app.quicktype.io](https://app.quicktype.io).
 
-# [Download Extension](https://install.appcenter.ms/orgs/quicktype/apps/quicktype-xcode/distribution_groups/Xcode%20Testers)
+# [Download Extension](https://github.com/quicktype/quicktype-xcode/releases/download/v8.0.29/quicktype-xcode.zip)
 
 ---
 
