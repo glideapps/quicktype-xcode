@@ -6,14 +6,35 @@ import AppCenterCrashes
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
-
+    
+    let issuesUrl = URL(string: "https://github.com/quicktype/quicktype-xcode/issues/new")!
+    
+    func showDialog() -> NSApplication.ModalResponse {
+        let alert = NSAlert()
+        alert.messageText = "quicktype for Xcode activated"
+        alert.informativeText = "You should now find \"Paste JSON as\" in Xcode's Editor menu."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Ok")
+        alert.addButton(withTitle: "Report Issue…")
+        return alert.runModal()
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         MSAppCenter.start("dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", withServices:[
             MSAnalytics.self,
             MSCrashes.self
         ])
+        
+        switch showDialog() {
+        case .alertSecondButtonReturn:
+            MSAnalytics.trackEvent("report issue")
+            NSWorkspace.shared.open(issuesUrl)
+            break;
+        default:
+            break;
+        }
+        
+        NSApplication.shared.terminate(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
