@@ -8,9 +8,18 @@ import AppCenterAnalytics
 
 typealias Invocation = XCSourceEditorCommandInvocation
 
+// Commands correspond to definitions in Info.plist
 enum Command: String {
-    case pasteJSONAsTypes = "io.quicktype.quicktype-xcode.PasteJSONAsTypes"
-    case pasteJSONAsCode = "io.quicktype.quicktype-xcode.PasteJSONAsCode"
+    case pasteJSONAsTypes = "PasteJSONAsTypes"
+    case pasteJSONAsCode = "PasteJSONAsCode"
+}
+
+// "io.quicktype.quicktype-xcode.X" -> Command(rawValue: "X")
+func command(identifier: String) -> Command? {
+    guard let component = identifier.split(separator: ".").last else {
+        return nil
+    }
+    return Command(rawValue: String(component))
 }
 
 struct Options {
@@ -128,7 +137,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     }
     
     func perform(with invocation: Invocation, completionHandler: @escaping (Error?) -> Void) -> Void {
-        guard let command = Command(rawValue: invocation.commandIdentifier) else {
+        guard let command = command(identifier: invocation.commandIdentifier) else {
             completionHandler(error("Unrecognized command"))
             return
         }
