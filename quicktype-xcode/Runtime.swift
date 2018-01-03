@@ -9,7 +9,8 @@ fileprivate let languageUTIs: [CFString: Language] = [
     kUTTypeSwiftSource: .swift,
     kUTTypeJavaSource: .java,
     kUTTypeCPlusPlusSource: .cpp,
-    kUTTypeObjectiveCPlusPlusSource: .cpp
+    kUTTypeObjectiveCPlusPlusSource: .cpp,
+    "com.apple.dt.playground" as CFString: .swift
 ]
 
 func languageFor(contentUTI: CFString) -> Language? {
