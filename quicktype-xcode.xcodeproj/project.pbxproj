@@ -501,7 +501,7 @@
 				DEVELOPMENT_TEAM = W9D824R4EW;
 				INFOPLIST_FILE = quicktype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype;
+				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -521,7 +521,7 @@
 				DEVELOPMENT_TEAM = W9D824R4EW;
 				INFOPLIST_FILE = quicktype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype;
+				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -539,7 +539,7 @@
 				DEVELOPMENT_TEAM = W9D824R4EW;
 				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype.xcode;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -558,7 +558,7 @@
 				DEVELOPMENT_TEAM = W9D824R4EW;
 				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = quicktype.quicktype.xcode;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

@@ -9,8 +9,8 @@ import AppCenterAnalytics
 typealias Invocation = XCSourceEditorCommandInvocation
 
 enum Command: String {
-    case pasteJSONAsTypes = "quicktype.quicktype.xcode.PasteJSONAsTypes"
-    case pasteJSONAsCode = "quicktype.quicktype.xcode.PasteJSONAsCode"
+    case pasteJSONAsTypes = "io.quicktype.quicktype-xcode.PasteJSONAsTypes"
+    case pasteJSONAsCode = "io.quicktype.quicktype-xcode.PasteJSONAsCode"
 }
 
 struct Options {
