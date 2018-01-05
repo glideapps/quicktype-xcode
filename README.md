@@ -1,4 +1,4 @@
-### [Try quicktype in your browser.](https://app.quicktype.io#l=swift)
+### [Try quicktype in your browser](https://app.quicktype.io#l=swift).
 
 <br />
 
@@ -12,8 +12,6 @@
 [![paste json as code](media/download.svg)](https://itunes.apple.com/us/app/paste-json-as-code-quicktype/id1330801220?mt=12)
 
 ![paste json as code](media/demo.gif)
-
-You can also [try `quicktype` in your browser](https://app.quicktype.io).
 
 ## Development
 
