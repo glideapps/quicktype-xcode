@@ -29,7 +29,7 @@ class Runtime {
     
     let preface = [
         "Generated with quicktype",
-        "For more options, try https://quicktype.io"
+        "For more options, try https://app.quicktype.io"
     ]
     
     private init() {
