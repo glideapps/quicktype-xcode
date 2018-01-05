@@ -1,4 +1,4 @@
-### [Try quicktype in your browser.](https://app.quicktyoe.io#l=swift)
+### [Try quicktype in your browser.](https://app.quicktype.io#l=swift)
 
 <br />
 
