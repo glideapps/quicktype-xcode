@@ -46,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0E7D7696ABA2172E52FD3096 /* Pods_quicktype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quicktype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6317CCFE1FECC5DC006CCFC1 /* quicktype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quicktype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paste JSON as Code • quicktype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6317CD031FECC5DC006CCFC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6317CD061FECC5DC006CCFC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		6317CCFF1FECC5DC006CCFC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6317CCFE1FECC5DC006CCFC1 /* quicktype.app */,
+				6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */,
 				6317CD131FECC654006CCFC1 /* quicktype-xcode.appex */,
 			);
 			name = Products;
@@ -176,7 +176,7 @@
 			);
 			name = quicktype;
 			productName = "quicktype-xcode";
-			productReference = 6317CCFE1FECC5DC006CCFC1 /* quicktype.app */;
+			productReference = 6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6317CD121FECC654006CCFC1 /* quicktype-xcode */ = {
@@ -502,7 +502,7 @@
 				INFOPLIST_FILE = quicktype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
@@ -522,7 +522,7 @@
 				INFOPLIST_FILE = quicktype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
