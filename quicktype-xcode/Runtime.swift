@@ -2,14 +2,16 @@ import Foundation
 import JavaScriptCore
 
 enum Language: String {
-    case swift, java, cpp
+    case swift, java, cpp, objc
 }
 
 fileprivate let languageUTIs: [CFString: Language] = [
     kUTTypeSwiftSource: .swift,
+    kUTTypeObjectiveCSource: .objc,
+    kUTTypeCHeader: .objc,
     kUTTypeJavaSource: .java,
     kUTTypeCPlusPlusSource: .cpp,
-    kUTTypeObjectiveCPlusPlusSource: .cpp,
+    kUTTypeObjectiveCPlusPlusSource: .objc,
     "com.apple.dt.playground" as CFString: .swift
 ]
 
