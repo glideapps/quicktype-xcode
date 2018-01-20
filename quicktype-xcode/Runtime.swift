@@ -101,10 +101,10 @@ class Runtime {
         }.joined(separator: ", ") + " }"
     }
     
-    func quicktype(_ json: String, language: Language, options: [String: Any], fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func quicktype(_ json: String, topLevel: String, language: Language, options: [String: Any], fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
         // .header (C header files) are assumed to be Objective-C headers
         if language == .objcHeader {
-            return quicktype(json, language:.objc, options: options, fail: fail, success: success)
+            return quicktype(json, topLevel: topLevel, language:.objc, options: options, fail: fail, success: success)
         }
         
         resolve { lines in success(lines) }
@@ -117,7 +117,7 @@ class Runtime {
                 window.quicktype.quicktype({
                   lang: "\(language.rawValue)",
                   sources: [{
-                    name: "TopLevel",
+                    name: "\(topLevel)",
                     samples: [json]
                   }],
                   leadingComments: [\(comments)],

@@ -36,15 +36,12 @@ let languageOptionsForCommand: [Command: [Language: [String: Any]]] = [
         .objc: [
             // Objective-C is not ideal yet, so extra comments are useful
             "extra-comments": true,
-            // We also intentionally output implementation *and* interfaces until we can emit
-            // better instructions for importing your header
-            "features": "all"
+            "features": "implementation"
         ],
         .objcHeader: ["features": "interface"],
         .swift: ["initializers": true]
     ]
 ]
-
 
 class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
@@ -54,8 +51,8 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             ])
     }
     
-    func getFirstSelection(_ invocation: Invocation) -> XCSourceTextRange? {
-        for range in invocation.buffer.selections {
+    func getFirstSelection(_ buffer: XCSourceTextBuffer) -> XCSourceTextRange? {
+        for range in buffer.selections {
             guard let range = range as? XCSourceTextRange else {
                 continue
             }
@@ -103,9 +100,54 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         return false
     }
     
+    func inferTopLevelNameFromBuffer(_ buffer: XCSourceTextBuffer) -> String {
+        // By default, new Objective-C files start like this:
+        
+        //
+        //  QTFileName.h
+        
+        // So we simply look at the second line of the buffer to attempt to
+        // guess the filename, so we can provide a better class prefix and top-level name
+        
+        let lines = buffer.lines as! [String]
+        let selection = getFirstSelection(buffer) ?? XCSourceTextRange()
+        if lines.count > 1 {
+            let line = lines[1] as String
+            if let _ = line.range(of: "//  (.+).(\\w+)", options: .regularExpression, range: nil, locale: nil) {
+                let topLevel = String(line.dropFirst(4).prefix { $0 != "." })
+                
+                // There must be no other occurrences outside of the selection
+                var matches = 0
+                for (index, element) in lines.enumerated() {
+                    let outsideSelection = index < selection.start.line || index > selection.end.line
+                    if outsideSelection && element.range(of: topLevel) != nil {
+                        matches += 1
+                    }
+                }
+                if matches == 1 {
+                    return topLevel
+                }
+            }
+        }
+        return "TopLevel"
+    }
+    
+    func classPrefixFromClass(_ name: String) -> String? {
+        func isUppercase(_ c: Character) -> Bool {
+            for scalar in c.unicodeScalars {
+                if !CharacterSet.uppercaseLetters.contains(scalar) {
+                    return false
+                }
+            }
+            return true
+        }
+        let prefix = name.prefix { isUppercase($0) }.dropLast()
+        return prefix.isEmpty ? nil : String(prefix)
+    }
+    
     func handleSuccess(lines: [String], _ invocation: Invocation, _ completionHandler: @escaping (Error?) -> Void) {
         let buffer = invocation.buffer
-        let selection = getFirstSelection(invocation) ?? XCSourceTextRange()
+        let selection = getFirstSelection(invocation.buffer) ?? XCSourceTextRange()
         
         // If we're pasting in the middle of anything, we omit imports
         let cleanLines = insertingAfterCode(buffer, selection)
@@ -177,7 +219,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             "language": language.rawValue
         ])
         
-        let options = getOptions(command, language)
+        var options = getOptions(command, language)
         let runtime = Runtime.shared
         
         if !runtime.isInitialized && !runtime.initialize() {
@@ -190,7 +232,16 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
+        let topLevel = inferTopLevelNameFromBuffer(invocation.buffer)
+        // For Objective-C, we try to infer the class prefix
+        if [.objc, .objcHeader].contains(language) {
+            if let classPrefix = classPrefixFromClass(topLevel) {
+                options = options.merging(["class-prefix": classPrefix], uniquingKeysWith: { $1 })
+            }
+        }
+        
         runtime.quicktype(json,
+                          topLevel: topLevel,
                           language: language,
                           options: options,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
