@@ -19,6 +19,6 @@
   "homepage": "https://github.com/quicktype/quicktype-xcode#readme",
   "devDependencies": {
     "browserify": "^14.5.0",
-    "quicktype": "8.*.*"
+    "quicktype": "^8.2.9"
   }
 }

@@ -22,14 +22,29 @@ func command(identifier: String) -> Command? {
     return Command(rawValue: String(component))
 }
 
-struct Options {
-    let justTypes: Bool
-}
-
-let optionsForCommand: [Command: Options] = [
-    .pasteJSONAsTypes: Options(justTypes: true),
-    .pasteJSONAsCode: Options(justTypes: false)
+let defaultOptionsForCommand: [Command: [String: Any]] = [
+    .pasteJSONAsTypes: ["just-types": true],
+    .pasteJSONAsCode: ["just-types": false],
 ]
+
+let languageOptionsForCommand: [Command: [Language: [String: Any]]] = [
+    .pasteJSONAsTypes: [
+        .objc: ["features": "implementation", "just-types": false],
+        .objcHeader: ["features": "interface"]
+    ],
+    .pasteJSONAsCode: [
+        .objc: [
+            // Objective-C is not ideal yet, so extra comments are useful
+            "extra-comments": true,
+            // We also intentionally output implementation *and* interfaces until we can emit
+            // better instructions for importing your header
+            "features": "all"
+        ],
+        .objcHeader: ["features": "interface"],
+        .swift: ["initializers": true]
+    ]
+]
+
 
 class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     func error(_ message: String, details: String = "No details") -> NSError {
@@ -136,13 +151,23 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         completionHandler(error(displayMessage, details: message))
     }
     
+    func getOptions(_ command: Command, _ language: Language) -> [String: Any] {
+        let defaults = defaultOptionsForCommand[command] ?? [:]
+        let options = languageOptionsForCommand[command]?[language] ?? [:]
+        return defaults.merging(options, uniquingKeysWith: { $1 })
+    }
+    
+    func getTargetLanguage(_ command: Command, _ invocation: Invocation) -> Language? {
+        return languageFor(contentUTI: invocation.buffer.contentUTI as CFString)
+    }
+    
     func perform(with invocation: Invocation, completionHandler: @escaping (Error?) -> Void) -> Void {
         guard let command = command(identifier: invocation.commandIdentifier) else {
             completionHandler(error("Unrecognized command"))
             return
         }
         
-        guard let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) else {
+        guard let language = getTargetLanguage(command, invocation) else {
             completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
             return
         }
@@ -152,11 +177,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             "language": language.rawValue
         ])
         
-        guard let options = optionsForCommand[command] else {
-            completionHandler(error("Could not determine command options"))
-            return
-        }
-        
+        let options = getOptions(command, language)
         let runtime = Runtime.shared
         
         if !runtime.isInitialized && !runtime.initialize() {
@@ -171,7 +192,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         
         runtime.quicktype(json,
                           language: language,
-                          justTypes: options.justTypes,
+                          options: options,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
                           success: { self.handleSuccess(lines: $0, invocation, completionHandler) })
     }

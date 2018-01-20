@@ -2,13 +2,13 @@ import Foundation
 import JavaScriptCore
 
 enum Language: String {
-    case swift, java, cpp, objc
+    case swift, java, cpp, objc, objcHeader
 }
 
 fileprivate let languageUTIs: [CFString: Language] = [
     kUTTypeSwiftSource: .swift,
     kUTTypeObjectiveCSource: .objc,
-    kUTTypeCHeader: .objc,
+    kUTTypeCHeader: .objcHeader,
     kUTTypeJavaSource: .java,
     kUTTypeCPlusPlusSource: .cpp,
     kUTTypeObjectiveCPlusPlusSource: .objc,
@@ -16,6 +16,7 @@ fileprivate let languageUTIs: [CFString: Language] = [
 ]
 
 func languageFor(contentUTI: CFString) -> Language? {
+    print(contentUTI)
     for (uti, language) in languageUTIs {
         if UTTypeConformsTo(contentUTI as CFString, uti) {
             return language
@@ -87,7 +88,25 @@ class Runtime {
         context.setObject(rejectBlock, forKeyedSubscript: "reject" as NSString)
     }
     
-    func quicktype(_ json: String, language: Language, justTypes: Bool, fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+    func renderOptionsToJavaScriptObject(_ options: [String: Any]) -> String {
+        return "{ " + options.map { key, value in
+            var javaScriptValue = "\(value)"
+            
+            switch value {
+            case is String: javaScriptValue = "\"\(value)\""
+            default: break
+            }
+            
+            return "\"\(key)\": \(javaScriptValue)"
+        }.joined(separator: ", ") + " }"
+    }
+    
+    func quicktype(_ json: String, language: Language, options: [String: Any], fail: @escaping (String) -> Void, success: @escaping ([String]) -> Void) {
+        // .header (C header files) are assumed to be Objective-C headers
+        if language == .objcHeader {
+            return quicktype(json, language:.objc, options: options, fail: fail, success: success)
+        }
+        
         resolve { lines in success(lines) }
         reject { errorMessage in fail(errorMessage) }
         
@@ -102,9 +121,7 @@ class Runtime {
                     samples: [json]
                   }],
                   leadingComments: [\(comments)],
-                  rendererOptions: {
-                    "just-types": \(justTypes ? "true" : "false")
-                  }
+                  rendererOptions: \(renderOptionsToJavaScriptObject(options)),
                 }).then(function(result) {
                   resolve(result.lines);
                 }).catch(function(e) {

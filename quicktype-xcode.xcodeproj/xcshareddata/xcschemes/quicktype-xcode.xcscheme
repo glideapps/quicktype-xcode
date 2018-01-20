@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6317CCFD1FECC5DC006CCFC1"
-               BuildableName = "quicktype.app"
+               BuildableName = "Paste JSON as Code &#x2022; quicktype.app"
                BlueprintName = "quicktype"
                ReferencedContainer = "container:quicktype-xcode.xcodeproj">
             </BuildableReference>
@@ -69,16 +69,20 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "com.apple.dt.Xcode"
+         RemotePath = "/Applications/Xcode.app">
+      </RemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6317CCFD1FECC5DC006CCFC1"
-            BuildableName = "quicktype.app"
+            BuildableName = "Paste JSON as Code &#x2022; quicktype.app"
             BlueprintName = "quicktype"
             ReferencedContainer = "container:quicktype-xcode.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,7 +98,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6317CCFD1FECC5DC006CCFC1"
-            BuildableName = "quicktype.app"
+            BuildableName = "Paste JSON as Code &#x2022; quicktype.app"
             BlueprintName = "quicktype"
             ReferencedContainer = "container:quicktype-xcode.xcodeproj">
          </BuildableReference>
