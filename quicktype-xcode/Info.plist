@@ -32,18 +32,26 @@
 					<key>XCSourceEditorCommandClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsTypes</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Paste JSON as Types</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsCode</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Paste JSON as Code</string>
 				</dict>
+                <dict>
+                    <key>XCSourceEditorCommandClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
+                    <key>XCSourceEditorCommandIdentifier</key>
+                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsObjCHeader</string>
+                    <key>XCSourceEditorCommandName</key>
+                    <string>Paste JSON as Objective-C Header</string>
+                </dict>
+                <dict>
+                    <key>XCSourceEditorCommandClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).PasteJSONCommand</string>
+                    <key>XCSourceEditorCommandIdentifier</key>
+                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).PasteJSONAsObjCImplementation</string>
+                    <key>XCSourceEditorCommandName</key>
+                    <string>Paste JSON as Objective-C Implementation</string>
+                </dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>

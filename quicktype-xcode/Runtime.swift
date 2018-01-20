@@ -8,7 +8,7 @@ enum Language: String {
 fileprivate let languageUTIs: [CFString: Language] = [
     kUTTypeSwiftSource: .swift,
     kUTTypeObjectiveCSource: .objc,
-    kUTTypeCHeader: .objcHeader,
+    kUTTypeCHeader: .objc,
     kUTTypeJavaSource: .java,
     kUTTypeCPlusPlusSource: .cpp,
     kUTTypeObjectiveCPlusPlusSource: .objc,

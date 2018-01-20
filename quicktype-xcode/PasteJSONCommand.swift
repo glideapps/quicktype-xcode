@@ -10,8 +10,9 @@ typealias Invocation = XCSourceEditorCommandInvocation
 
 // Commands correspond to definitions in Info.plist
 enum Command: String {
-    case pasteJSONAsTypes = "PasteJSONAsTypes"
     case pasteJSONAsCode = "PasteJSONAsCode"
+    case pasteJSONAsObjCHeader = "PasteJSONAsObjCHeader"
+    case pasteJSONAsObjCImplementation = "PasteJSONAsObjCImplementation"
 }
 
 // "io.quicktype.quicktype-xcode.X" -> Command(rawValue: "X")
@@ -22,25 +23,13 @@ func command(identifier: String) -> Command? {
     return Command(rawValue: String(component))
 }
 
-let defaultOptionsForCommand: [Command: [String: Any]] = [
-    .pasteJSONAsTypes: ["just-types": true],
-    .pasteJSONAsCode: ["just-types": false],
-]
-
-let languageOptionsForCommand: [Command: [Language: [String: Any]]] = [
-    .pasteJSONAsTypes: [
-        .objc: ["features": "implementation", "just-types": false],
-        .objcHeader: ["features": "interface"]
+let commandOptions: [Language: [String: Any]] = [
+    .objc: [
+        // Objective-C is not ideal yet, so extra comments are useful
+        "extra-comments": true
     ],
-    .pasteJSONAsCode: [
-        .objc: [
-            // Objective-C is not ideal yet, so extra comments are useful
-            "extra-comments": true,
-            "features": "implementation"
-        ],
-        .objcHeader: ["features": "interface"],
-        .swift: ["initializers": true]
-    ]
+    .objcHeader: ["features": "interface"],
+    .swift: ["initializers": true]
 ]
 
 class PasteJSONCommand: NSObject, XCSourceEditorCommand {
@@ -119,6 +108,8 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
                 // There must be no other occurrences outside of the selection
                 var matches = 0
                 for (index, element) in lines.enumerated() {
+                    if isImport(element) { continue }
+                    
                     let outsideSelection = index < selection.start.line || index > selection.end.line
                     if outsideSelection && element.range(of: topLevel) != nil {
                         matches += 1
@@ -193,14 +184,18 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
         completionHandler(error(displayMessage, details: message))
     }
     
-    func getOptions(_ command: Command, _ language: Language) -> [String: Any] {
-        let defaults = defaultOptionsForCommand[command] ?? [:]
-        let options = languageOptionsForCommand[command]?[language] ?? [:]
-        return defaults.merging(options, uniquingKeysWith: { $1 })
-    }
-    
-    func getTargetLanguage(_ command: Command, _ invocation: Invocation) -> Language? {
-        return languageFor(contentUTI: invocation.buffer.contentUTI as CFString)
+    func getTarget(_ command: Command, _ invocation: Invocation) -> (language: Language, options: [String: Any])? {
+        switch command {
+        case .pasteJSONAsObjCHeader:
+            return (.objc, ["features": "interface"])
+        case .pasteJSONAsObjCImplementation:
+            return (.objc, ["features": "implementation"])
+        default:
+            if let language = languageFor(contentUTI: invocation.buffer.contentUTI as CFString) {
+                return(language, commandOptions[language] ?? [:])
+            }
+        }
+        return nil
     }
     
     func perform(with invocation: Invocation, completionHandler: @escaping (Error?) -> Void) -> Void {
@@ -209,7 +204,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
-        guard let language = getTargetLanguage(command, invocation) else {
+        guard let (language, options) = getTarget(command, invocation) else {
             completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
             return
         }
@@ -219,7 +214,6 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             "language": language.rawValue
         ])
         
-        var options = getOptions(command, language)
         let runtime = Runtime.shared
         
         if !runtime.isInitialized && !runtime.initialize() {
@@ -232,18 +226,19 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
+        var finalOptions = options
         let topLevel = inferTopLevelNameFromBuffer(invocation.buffer)
         // For Objective-C, we try to infer the class prefix
-        if [.objc, .objcHeader].contains(language) {
+        if language == .objc {
             if let classPrefix = classPrefixFromClass(topLevel) {
-                options = options.merging(["class-prefix": classPrefix], uniquingKeysWith: { $1 })
+                finalOptions = options.merging(["class-prefix": classPrefix], uniquingKeysWith: { $1 })
             }
         }
         
         runtime.quicktype(json,
                           topLevel: topLevel,
                           language: language,
-                          options: options,
+                          options: finalOptions,
                           fail: { self.handleError(message: $0, invocation, completionHandler) },
                           success: { self.handleSuccess(lines: $0, invocation, completionHandler) })
     }
