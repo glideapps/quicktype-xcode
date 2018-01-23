@@ -11,7 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showDialog() -> NSApplication.ModalResponse {
         let alert = NSAlert()
-        alert.messageText = "Paste JSON a Code for Xcode activated"
+        alert.messageText = "quicktype for Xcode is ready to use"
         alert.informativeText = "Enable the extension in System Preferences → Extensions, then find \"Paste JSON as\" in Xcode's Editor menu."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "Ok")
