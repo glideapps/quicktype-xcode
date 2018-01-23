@@ -36,7 +36,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSApplication.shared.terminate(self)
     }
-
+    
+    @IBAction func showHelp(_ sender: Any) {
+        NSWorkspace.shared.open(issuesUrl)
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
