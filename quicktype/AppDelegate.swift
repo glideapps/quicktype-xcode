@@ -1,4 +1,5 @@
 import Cocoa
+import WebKit
 
 import AppCenter
 import AppCenterAnalytics
@@ -7,17 +8,54 @@ import AppCenterCrashes
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let issuesUrl = URL(string: "https://github.com/quicktype/quicktype-xcode/issues/new")!
+    @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var webView: WKWebView!
     
-    func showDialog() -> NSApplication.ModalResponse {
+    let repoUrl = URL(string: "https://github.com/quicktype/quicktype")!
+    let issuesUrl = URL(string: "https://github.com/quicktype/quicktype-xcode/issues/new")!
+    let aboutUrl = URL(string: "https://quicktype.io")!
+    let appUrl = URL(string: "https://app.quicktype.io/#l=swift&context=xcode")!
+    
+    func showDialog() {
         let alert = NSAlert()
-        alert.messageText = "quicktype for Xcode is ready to use"
+        alert.messageText = "quicktype's Xcode extension is ready to use"
         alert.informativeText = "Enable the extension in System Preferences → Extensions, then find \"Paste JSON as\" in Xcode's Editor menu."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "Ok")
         alert.addButton(withTitle: "Open System Preferences")
-        alert.addButton(withTitle: "Report Issue…")
-        return alert.runModal()
+        
+        alert.beginSheetModal(for: window) {
+            switch $0 {
+            case .alertSecondButtonReturn:
+                MSAnalytics.trackEvent("open system preferences")
+                NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Extensions.prefPane")
+                break;
+            case .alertThirdButtonReturn:
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    
+    @IBAction func openGitHub(_ sender: Any) {
+        MSAnalytics.trackEvent("view on GitHub")
+        NSWorkspace.shared.open(repoUrl)
+    }
+    
+    @IBAction func showAbout(_ sender: Any) {
+        MSAnalytics.trackEvent("about")
+        NSWorkspace.shared.open(aboutUrl)
+    }
+    
+    @IBAction func showHelp(_ sender: Any) {
+        MSAnalytics.trackEvent("report issue")
+        NSWorkspace.shared.open(self.issuesUrl)
+    }
+    
+    var isFirstRun: Bool {
+        get { return !UserDefaults.standard.bool(forKey: "hasRunBefore")  }
+        set(value) { UserDefaults.standard.set(!value, forKey: "hasRunBefore") }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -26,26 +64,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             MSCrashes.self
         ])
         
-        switch showDialog() {
-        case .alertSecondButtonReturn:
-            MSAnalytics.trackEvent("open system preferences")
-            NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Extensions.prefPane")
-            break;
-        case .alertThirdButtonReturn:
-            MSAnalytics.trackEvent("report issue")
-            NSWorkspace.shared.open(issuesUrl)
-            break;
-        default:
-            break;
+        window.makeKeyAndOrderFront(self)
+        webView.load(URLRequest(url: appUrl))
+        
+        if isFirstRun {
+            showDialog()
+            isFirstRun = false
         }
-        NSApplication.shared.terminate(self)
-    }
-    
-    @IBAction func showHelp(_ sender: Any) {
-        NSWorkspace.shared.open(issuesUrl)
-    }
-    
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 }
