@@ -11,10 +11,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showDialog() -> NSApplication.ModalResponse {
         let alert = NSAlert()
-        alert.messageText = "quicktype for Xcode activated"
+        alert.messageText = "Paste JSON a Code for Xcode activated"
         alert.informativeText = "Enable the extension in System Preferences → Extensions, then find \"Paste JSON as\" in Xcode's Editor menu."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "Ok")
+        alert.addButton(withTitle: "Open System Preferences")
         alert.addButton(withTitle: "Report Issue…")
         return alert.runModal()
     }
@@ -27,13 +28,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         switch showDialog() {
         case .alertSecondButtonReturn:
+            MSAnalytics.trackEvent("open system preferences")
+            NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Extensions.prefPane")
+            break;
+        case .alertThirdButtonReturn:
             MSAnalytics.trackEvent("report issue")
             NSWorkspace.shared.open(issuesUrl)
             break;
         default:
             break;
         }
-        
         NSApplication.shared.terminate(self)
     }
     
