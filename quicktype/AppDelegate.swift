@@ -6,7 +6,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var webView: WKWebView!
@@ -58,6 +58,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         set(value) { UserDefaults.standard.set(!value, forKey: "hasRunBefore") }
     }
     
+    func openExternalLink(_ navigationAction: WKNavigationAction) {
+        if let url = navigationAction.request.url {
+            MSAnalytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         func isExternal(_ url: URL) -> Bool {
@@ -67,8 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
 
         if let url = navigationAction.request.url {
             if isExternal(url) {
-                MSAnalytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
-                NSWorkspace.shared.open(url)
+                openExternalLink(navigationAction)
                 decisionHandler(.cancel)
             } else {
                 decisionHandler(.allow)
@@ -76,6 +82,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         } else {
             decisionHandler(.allow)
         }
+    }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            openExternalLink(navigationAction)
+        }
+        return nil
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -87,6 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
         window.makeKeyAndOrderFront(self)
         
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.load(URLRequest(url: appUrl))
         
         if isFirstRun {
