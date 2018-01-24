@@ -6,7 +6,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var webView: WKWebView!
@@ -58,6 +58,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         set(value) { UserDefaults.standard.set(!value, forKey: "hasRunBefore") }
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        func isExternal(_ url: URL) -> Bool {
+            let s = url.absoluteString
+            return s.starts(with: "http") && !s.starts(with: "https://app.quicktype.io")
+        }
+
+        if let url = navigationAction.request.url {
+            if isExternal(url) {
+                MSAnalytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
+                NSWorkspace.shared.open(url)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         MSAppCenter.start("dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", withServices:[
             MSAnalytics.self,
@@ -65,6 +85,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ])
         
         window.makeKeyAndOrderFront(self)
+        
+        webView.navigationDelegate = self
         webView.load(URLRequest(url: appUrl))
         
         if isFirstRun {
