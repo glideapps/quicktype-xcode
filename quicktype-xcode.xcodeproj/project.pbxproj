@@ -59,6 +59,7 @@
 		6317CD1C1FECC654006CCFC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6317CD1D1FECC654006CCFC1 /* quicktype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = quicktype.entitlements; sourceTree = "<group>"; };
 		6349B5AC1FECF39D00F7AA42 /* quicktype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = quicktype.js; sourceTree = "<group>"; };
+		63A69E26201979880069EE72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		AF5048109FC820104D64037F /* Pods_quicktype_xcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quicktype_xcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE02F12E7791C89347A8A5A2 /* Pods-quicktype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quicktype.release.xcconfig"; path = "Pods/Target Support Files/Pods-quicktype/Pods-quicktype.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		6317CCF51FECC5DC006CCFC1 = {
 			isa = PBXGroup;
 			children = (
+				63A69E26201979880069EE72 /* README.md */,
 				6317CD001FECC5DC006CCFC1 /* quicktype */,
 				6317CD171FECC654006CCFC1 /* quicktype-xcode */,
 				6317CD141FECC654006CCFC1 /* Frameworks */,

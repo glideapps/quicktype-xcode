@@ -18,7 +18,5 @@
 ### Install prereqs and bundle quicktype
 
 ```bash
-$ brew install jq
-$ npm install
 $ pod install
 ```
