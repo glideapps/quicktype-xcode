@@ -117,6 +117,7 @@ class Runtime {
                 window.quicktype.quicktype({
                   lang: "\(language.rawValue)",
                   sources: [{
+                    kind: "json",
                     name: "\(topLevel)",
                     samples: [json]
                   }],
