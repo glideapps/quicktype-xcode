@@ -209,7 +209,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
-        MSAnalytics.trackEvent("perform", withProperties: [
+        Analytics.trackEvent("perform", withProperties: [
             "command": invocation.commandIdentifier,
             "language": language.rawValue
         ])

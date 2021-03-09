@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6008096999230FF83F440063 /* Pods_quicktype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7D7696ABA2172E52FD3096 /* Pods_quicktype.framework */; };
 		6317CD021FECC5DC006CCFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */; };
 		6317CD041FECC5DC006CCFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD031FECC5DC006CCFC1 /* Assets.xcassets */; };
 		6317CD071FECC5DC006CCFC1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6317CD051FECC5DC006CCFC1 /* MainMenu.xib */; };
@@ -17,7 +16,10 @@
 		6317CD201FECC654006CCFC1 /* quicktype-xcode.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6317CD131FECC654006CCFC1 /* quicktype-xcode.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6349B5AD1FECF39D00F7AA42 /* quicktype.js in Resources */ = {isa = PBXBuildFile; fileRef = 6349B5AC1FECF39D00F7AA42 /* quicktype.js */; };
 		63BCCEDF1FED99AD00E1C1DB /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */; };
-		C641765DFF80718A9ED03AA5 /* Pods_quicktype_xcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5048109FC820104D64037F /* Pods_quicktype_xcode.framework */; };
+		D87701F425F7E6A3002E3EA3 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = D87701F325F7E6A3002E3EA3 /* AppCenterCrashes */; };
+		D87701F625F7E6A3002E3EA3 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D87701F525F7E6A3002E3EA3 /* AppCenterAnalytics */; };
+		D87701FA25F7E6CC002E3EA3 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D87701F925F7E6CC002E3EA3 /* AppCenterAnalytics */; };
+		D87701FC25F7E6CC002E3EA3 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = D87701FB25F7E6CC002E3EA3 /* AppCenterCrashes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E7D7696ABA2172E52FD3096 /* Pods_quicktype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quicktype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paste JSON as Code • quicktype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6317CD011FECC5DC006CCFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6317CD031FECC5DC006CCFC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,11 +62,6 @@
 		6349B5AC1FECF39D00F7AA42 /* quicktype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = quicktype.js; sourceTree = "<group>"; };
 		63A69E26201979880069EE72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
-		AF5048109FC820104D64037F /* Pods_quicktype_xcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quicktype_xcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE02F12E7791C89347A8A5A2 /* Pods-quicktype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quicktype.release.xcconfig"; path = "Pods/Target Support Files/Pods-quicktype/Pods-quicktype.release.xcconfig"; sourceTree = "<group>"; };
-		F6A80018D9CE533E1E87C692 /* Pods-quicktype-xcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quicktype-xcode.release.xcconfig"; path = "Pods/Target Support Files/Pods-quicktype-xcode/Pods-quicktype-xcode.release.xcconfig"; sourceTree = "<group>"; };
-		F7B4057F9D059DC3D12AB7AF /* Pods-quicktype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quicktype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-quicktype/Pods-quicktype.debug.xcconfig"; sourceTree = "<group>"; };
-		FFB98AB568B6E0136F3C7E33 /* Pods-quicktype-xcode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quicktype-xcode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-quicktype-xcode/Pods-quicktype-xcode.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6008096999230FF83F440063 /* Pods_quicktype.framework in Frameworks */,
+				D87701F625F7E6A3002E3EA3 /* AppCenterAnalytics in Frameworks */,
+				D87701F425F7E6A3002E3EA3 /* AppCenterCrashes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,25 +78,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87701FA25F7E6CC002E3EA3 /* AppCenterAnalytics in Frameworks */,
+				D87701FC25F7E6CC002E3EA3 /* AppCenterCrashes in Frameworks */,
 				6317CD161FECC654006CCFC1 /* Cocoa.framework in Frameworks */,
-				C641765DFF80718A9ED03AA5 /* Pods_quicktype_xcode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13256B2FC4EB89A91C9B85D2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F7B4057F9D059DC3D12AB7AF /* Pods-quicktype.debug.xcconfig */,
-				EE02F12E7791C89347A8A5A2 /* Pods-quicktype.release.xcconfig */,
-				FFB98AB568B6E0136F3C7E33 /* Pods-quicktype-xcode.debug.xcconfig */,
-				F6A80018D9CE533E1E87C692 /* Pods-quicktype-xcode.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6317CCF51FECC5DC006CCFC1 = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +95,6 @@
 				6317CD171FECC654006CCFC1 /* quicktype-xcode */,
 				6317CD141FECC654006CCFC1 /* Frameworks */,
 				6317CCFF1FECC5DC006CCFC1 /* Products */,
-				13256B2FC4EB89A91C9B85D2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				6317CD151FECC654006CCFC1 /* Cocoa.framework */,
-				0E7D7696ABA2172E52FD3096 /* Pods_quicktype.framework */,
-				AF5048109FC820104D64037F /* Pods_quicktype_xcode.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,13 +147,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6317CD0C1FECC5DC006CCFC1 /* Build configuration list for PBXNativeTarget "quicktype" */;
 			buildPhases = (
-				78A9591498879A454794ADEA /* [CP] Check Pods Manifest.lock */,
 				6317CCFA1FECC5DC006CCFC1 /* Sources */,
 				6317CCFB1FECC5DC006CCFC1 /* Frameworks */,
 				6317CCFC1FECC5DC006CCFC1 /* Resources */,
 				6317CD241FECC654006CCFC1 /* Embed App Extensions */,
-				3ABAF7BAFB7E0DC8A467E357 /* [CP] Embed Pods Frameworks */,
-				F0FC76D4D306D15E600AD4BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,6 +158,10 @@
 				6317CD1F1FECC654006CCFC1 /* PBXTargetDependency */,
 			);
 			name = quicktype;
+			packageProductDependencies = (
+				D87701F325F7E6A3002E3EA3 /* AppCenterCrashes */,
+				D87701F525F7E6A3002E3EA3 /* AppCenterAnalytics */,
+			);
 			productName = "quicktype-xcode";
 			productReference = 6317CCFE1FECC5DC006CCFC1 /* Paste JSON as Code • quicktype.app */;
 			productType = "com.apple.product-type.application";
@@ -185,17 +170,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6317CD211FECC654006CCFC1 /* Build configuration list for PBXNativeTarget "quicktype-xcode" */;
 			buildPhases = (
-				A85F1117C340CF00483E03EE /* [CP] Check Pods Manifest.lock */,
 				6317CD0F1FECC654006CCFC1 /* Sources */,
 				6317CD101FECC654006CCFC1 /* Frameworks */,
 				6317CD111FECC654006CCFC1 /* Resources */,
-				6A4CAF0D59D57FB57F5FCECC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "quicktype-xcode";
+			packageProductDependencies = (
+				D87701F925F7E6CC002E3EA3 /* AppCenterAnalytics */,
+				D87701FB25F7E6CC002E3EA3 /* AppCenterCrashes */,
+			);
 			productName = quicktype;
 			productReference = 6317CD131FECC654006CCFC1 /* quicktype-xcode.appex */;
 			productType = "com.apple.product-type.xcode-extension";
@@ -229,6 +216,9 @@
 				Base,
 			);
 			mainGroup = 6317CCF51FECC5DC006CCFC1;
+			packageReferences = (
+				D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+			);
 			productRefGroup = 6317CCFF1FECC5DC006CCFC1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,90 +248,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3ABAF7BAFB7E0DC8A467E357 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-quicktype/Pods-quicktype-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A4CAF0D59D57FB57F5FCECC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-quicktype-xcode/Pods-quicktype-xcode-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78A9591498879A454794ADEA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-quicktype-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A85F1117C340CF00483E03EE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-quicktype-xcode-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0FC76D4D306D15E600AD4BC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-quicktype/Pods-quicktype-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6317CCFA1FECC5DC006CCFC1 /* Sources */ = {
@@ -486,13 +392,13 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
 		6317CD0D1FECC5DC006CCFC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7B4057F9D059DC3D12AB7AF /* Pods-quicktype.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -500,9 +406,12 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = W9D824R4EW;
+				DEVELOPMENT_TEAM = R7U38L2MFZ;
 				INFOPLIST_FILE = quicktype/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -512,7 +421,6 @@
 		};
 		6317CD0E1FECC5DC006CCFC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE02F12E7791C89347A8A5A2 /* Pods-quicktype.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -520,9 +428,12 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = W9D824R4EW;
+				DEVELOPMENT_TEAM = R7U38L2MFZ;
 				INFOPLIST_FILE = quicktype/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -532,15 +443,18 @@
 		};
 		6317CD221FECC654006CCFC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFB98AB568B6E0136F3C7E33 /* Pods-quicktype-xcode.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "quicktype-xcode/quicktype.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = W9D824R4EW;
+				DEVELOPMENT_TEAM = R7U38L2MFZ;
 				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -551,15 +465,18 @@
 		};
 		6317CD231FECC654006CCFC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6A80018D9CE533E1E87C692 /* Pods-quicktype-xcode.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "quicktype-xcode/quicktype.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = W9D824R4EW;
+				DEVELOPMENT_TEAM = R7U38L2MFZ;
 				INFOPLIST_FILE = "quicktype-xcode/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.quicktype.quicktype-xcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -599,6 +516,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D87701F325F7E6A3002E3EA3 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		D87701F525F7E6A3002E3EA3 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		D87701F925F7E6CC002E3EA3 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		D87701FB25F7E6CC002E3EA3 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D87701F225F7E6A3002E3EA3 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6317CCF61FECC5DC006CCFC1 /* Project object */;
 }

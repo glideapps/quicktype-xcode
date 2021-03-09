@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
         alert.beginSheetModal(for: window) {
             switch $0 {
             case .alertSecondButtonReturn:
-                MSAnalytics.trackEvent("open system preferences")
+                Analytics.trackEvent("open system preferences")
                 NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Extensions.prefPane")
                 break;
             case .alertThirdButtonReturn:
@@ -39,17 +39,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     }
     
     @IBAction func openGitHub(_ sender: Any) {
-        MSAnalytics.trackEvent("view on GitHub")
+        Analytics.trackEvent("view on GitHub")
         NSWorkspace.shared.open(repoUrl)
     }
     
     @IBAction func showAbout(_ sender: Any) {
-        MSAnalytics.trackEvent("about")
+        Analytics.trackEvent("about")
         NSWorkspace.shared.open(aboutUrl)
     }
     
     @IBAction func showHelp(_ sender: Any) {
-        MSAnalytics.trackEvent("report issue")
+        Analytics.trackEvent("report issue")
         NSWorkspace.shared.open(self.issuesUrl)
     }
     
@@ -60,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     
     func openExternalLink(_ navigationAction: WKNavigationAction) {
         if let url = navigationAction.request.url {
-            MSAnalytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
+            Analytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
             NSWorkspace.shared.open(url)
         }
     }
@@ -92,9 +92,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        MSAppCenter.start("dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", withServices:[
-            MSAnalytics.self,
-            MSCrashes.self
+        AppCenter.start(withAppSecret: "dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", services:[
+            Analytics.self,
+            Crashes.self
         ])
         
         window.makeKeyAndOrderFront(self)
