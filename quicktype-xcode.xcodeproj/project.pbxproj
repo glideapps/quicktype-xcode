@@ -20,6 +20,8 @@
 		D87701F625F7E6A3002E3EA3 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D87701F525F7E6A3002E3EA3 /* AppCenterAnalytics */; };
 		D87701FA25F7E6CC002E3EA3 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D87701F925F7E6CC002E3EA3 /* AppCenterAnalytics */; };
 		D87701FC25F7E6CC002E3EA3 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = D87701FB25F7E6CC002E3EA3 /* AppCenterCrashes */; };
+		D877021225F7EAE5002E3EA3 /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D877021125F7EAE5002E3EA3 /* XcodeKit.framework */; };
+		D877021325F7EAE5002E3EA3 /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D877021125F7EAE5002E3EA3 /* XcodeKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D877021425F7EAE5002E3EA3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D877021325F7EAE5002E3EA3 /* XcodeKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +75,7 @@
 		6349B5AC1FECF39D00F7AA42 /* quicktype.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = quicktype.js; sourceTree = "<group>"; };
 		63A69E26201979880069EE72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		63BCCEDE1FED99AD00E1C1DB /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
+		D877021125F7EAE5002E3EA3 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87701FA25F7E6CC002E3EA3 /* AppCenterAnalytics in Frameworks */,
+				D877021225F7EAE5002E3EA3 /* XcodeKit.framework in Frameworks */,
 				D87701FC25F7E6CC002E3EA3 /* AppCenterCrashes in Frameworks */,
 				6317CD161FECC654006CCFC1 /* Cocoa.framework in Frameworks */,
 			);
@@ -122,6 +137,7 @@
 		6317CD141FECC654006CCFC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D877021125F7EAE5002E3EA3 /* XcodeKit.framework */,
 				6317CD151FECC654006CCFC1 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -173,6 +189,7 @@
 				6317CD0F1FECC654006CCFC1 /* Sources */,
 				6317CD101FECC654006CCFC1 /* Frameworks */,
 				6317CD111FECC654006CCFC1 /* Resources */,
+				D877021425F7EAE5002E3EA3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,10 +216,12 @@
 				TargetAttributes = {
 					6317CCFD1FECC5DC006CCFC1 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 					};
 					6317CD121FECC654006CCFC1 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -423,7 +442,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -447,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.quicktype.quicktype;
 				PRODUCT_NAME = "Paste JSON as Code • quicktype";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -471,7 +490,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -495,7 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
