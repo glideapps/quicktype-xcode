@@ -60,7 +60,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
     
     func isImport(_ line: String) -> Bool {
         // TODO we should split this functionality by current source language
-        return ["import ", "#include ", "#import "].index { line.starts(with: $0) } != nil
+        return ["import ", "#include ", "#import "].firstIndex { line.starts(with: $0) } != nil
     }
     
     func trimStart(_ lines: [String]) -> [String] {
@@ -209,7 +209,7 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
-        MSAnalytics.trackEvent("perform", withProperties: [
+        Analytics.trackEvent("perform", withProperties: [
             "command": invocation.commandIdentifier,
             "language": language.rawValue
         ])
