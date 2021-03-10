@@ -1,10 +1,6 @@
 import Cocoa
 import WebKit
 
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDelegate {
     
@@ -27,8 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
         alert.beginSheetModal(for: window) {
             switch $0 {
             case .alertSecondButtonReturn:
-                Analytics.trackEvent("open system preferences")
-                NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Extensions.prefPane")
+                NSWorkspace.shared.open(URL(string: "/System/Library/PreferencePanes/Extensions.prefPane")!)
                 break;
             case .alertThirdButtonReturn:
                 break;
@@ -39,17 +34,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     }
     
     @IBAction func openGitHub(_ sender: Any) {
-        Analytics.trackEvent("view on GitHub")
         NSWorkspace.shared.open(repoUrl)
     }
     
     @IBAction func showAbout(_ sender: Any) {
-        Analytics.trackEvent("about")
         NSWorkspace.shared.open(aboutUrl)
     }
     
     @IBAction func showHelp(_ sender: Any) {
-        Analytics.trackEvent("report issue")
         NSWorkspace.shared.open(self.issuesUrl)
     }
     
@@ -60,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     
     func openExternalLink(_ navigationAction: WKNavigationAction) {
         if let url = navigationAction.request.url {
-            Analytics.trackEvent("open link", withProperties: ["link": url.absoluteString])
             NSWorkspace.shared.open(url)
         }
     }
@@ -92,11 +83,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKUIDe
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        AppCenter.start(withAppSecret: "dca3b9dd-3c61-4eae-93fe-84a1e5fc55b5", services:[
-            Analytics.self,
-            Crashes.self
-        ])
-        
         window.makeKeyAndOrderFront(self)
         
         webView.navigationDelegate = self
