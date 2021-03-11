@@ -4,8 +4,6 @@ import AppKit
 
 import XcodeKit
 
-import AppCenterAnalytics
-
 typealias Invocation = XCSourceEditorCommandInvocation
 
 // Commands correspond to definitions in Info.plist
@@ -208,11 +206,6 @@ class PasteJSONCommand: NSObject, XCSourceEditorCommand {
             completionHandler(error("Cannot generate code for \(invocation.buffer.contentUTI)"))
             return
         }
-        
-        Analytics.trackEvent("perform", withProperties: [
-            "command": invocation.commandIdentifier,
-            "language": language.rawValue
-        ])
         
         let runtime = Runtime.shared
         
